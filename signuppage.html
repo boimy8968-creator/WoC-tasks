@@ -4,13 +4,17 @@
     Signup page
   </title>
   <style>
-    .body {
+    body {
       font-family:Arial;
       margin: none;
       background-color: rgb(40, 35, 45);
-      display: flex;
+      
+      
       color: white;
       height: 600px;
+    }
+    .body {
+      display: flex;
     }
 
     .Image {
@@ -125,26 +129,52 @@
     <div class="signup-details">  
       <h1 class="heading">Create an account</h1>
       <p class="description">
-        Already have an account ? <a href="loginpage.html">Log in</a>
+        Already have an account ? <a href="../login page/loginpage.html">Log in</a>
       </p>
       <div class="user-input">
-        <input placeholder="First Name" class="InputName">
-        <input placeholder="Lastname" class="InputName">
-        <input placeholder="Email" class="email">
-        <input placeholder="Enter password" class="password">
+        <input placeholder="First Name" class="InputName js-FirstName">
+        <input placeholder="Lastname" class="InputName js-LastName">
+        <input placeholder="Email" class="email js-email">
+        <input placeholder="Enter password" class="password js-password" type = "password">
         <div class="terms-condition">
-          <input type="checkbox" class="check">
+          <input type="checkbox" class="check js-check">
           <p class="description">I agree to the <a href="https://openai.com/en-GB/policies/row-terms-of-use/">Terms & Condition</a></p>
         </div>
       </div>
-      <button class="login-button">Create an Account</button>
+      <button class="login-button" onclick="creatingAccount()">Create an Account</button>
       <hr class="line">
       <button class="other-option"><img src="2a5758d6-4edb-4047-87bb-e6b94dbbbab0-cover.png" class="logo">Google</button>
       <button class="other-option"><img src="apple-logo-png-index-content-uploads-10.png" class="apple-logo"> Apple</button>
       <button class="other-option"><img src="microsoft-logo-microsoft-icon-transparent-free-png.webp" class="microsoft-logo">Microsoft</button>
     </div>  
   </div>
-  
+  <script>
+    function creatingAccount () {
+      const currentUser = {
+        firstName: document.querySelector('.js-FirstName').value,
+        lastName: document.querySelector('.js-LastName').value,
+        eMail: document.querySelector('.js-email').value,
+        Password : document.querySelector('.js-password').value,
+      }
+      localStorage.setItem('currentFnm',currentUser.firstName);
+      localStorage.setItem('currentLnm',currentUser.lastName);
+      localStorage.setItem('currentEmail',currentUser.eMail);
+      localStorage.setItem('currentPass',currentUser.Password);
+      const checkBox = document.querySelector('.js-check')
+      console.log (checkBox.checked);
+      if (currentUser.firstName !== "" && currentUser.lastName !== "" && currentUser.eMail !== "" && currentUser.Password !== ""){
+        if (checkBox.checked === true) {
+          location.href="../profile page/profilepage.html";
+        } 
+        else {
+          alert('Please mark the checkbox');
+        }
+      }
+      else {
+        alert ('Please enter all your credentials');
+      }
+    }
+  </script>
   
 </body>
 </html>
