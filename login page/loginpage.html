@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<head>
+  <title>Login page</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: rgb(40, 35, 45);
+      color: white;
+      height: 600px;
+    }
+    .page {
+      display: flex; 
+      justify-content: space-between;
+    }
+    .description {
+      margin-right: 180px; 
+      margin-top: 10px;
+    }
+    .image {
+      width: 800px;
+      border-radius:40px;
+      box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+    }
+    .InputName {
+      padding: 14px;
+      padding-right: 12px; 
+      margin-bottom: 16px;
+      margin-left: 4px;
+      border-radius: 6px;
+      margin-right:10px;
+      background-color: rgb(76, 65, 86);
+      border:none;
+      color: rgb(255, 255, 255)
+    }
+    .signup {
+      font-size: 10px;
+      margin-left:5px;
+      margin-bottom: 18px;
+      display: inline-block;
+      text-align: left;
+    }
+    .Password {
+      display: block;
+      padding: 14px;
+      padding-right: 220px; 
+      margin-bottom: 16px;
+      margin-left: 4px;
+      border-radius: 6px;
+      background-color: rgb(76, 65, 86);
+      border:none;
+      color: rgb(255, 255, 255);
+      margin-top: 8px; 
+    }
+    .login-button {
+      background-color: rgb(121, 82, 179);
+      border: none;
+      color: white;
+      padding-top: 13px;
+      padding-bottom: 13px;
+      padding-left: 179px;
+      padding-right: 179px;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.15s;
+      cursor: pointer;
+      margin-top: 20px;
+      margin-left: 4px;
+    }
+    .login-button:hover {
+      background-color: rgb(113, 62, 113)
+    }
+    .forget {
+      font-size: 10px;
+      margin-left: 10px;
+      margin-top: 20px;
+    }
+    .line {
+      margin-top: 20px;
+    }
+     .logo {
+      width: 38px;
+      
+    }
+    .apple-logo {
+      height: 19px;
+      margin-right: 4px;
+    }
+     .microsoft-logo {
+      height: 19px;
+    }
+    .other-option {
+      background-color: rgb(40, 35, 45);
+      border-style: solid;
+      border-color: white;
+      border-width: 1px;
+      font-size: 18px;
+      padding-right: 24px;
+      padding-left: 18px;
+      padding-top: 14px;
+      color: white;
+      padding-bottom: 14px;
+      border-radius: 4px;
+      margin-right: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .other-option:hover{
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+      <div class = "page">
+        <img src = "istockphoto-1381637603-612x612.jpg" class = "image">
+        <div class = "description">
+          <h1>Login into your Account</h1>
+          <p class = "signup">Don't have a account yet? <a href = "../signup page/signuppage.html">Sign Up</a></p>
+          <div>
+            <input placeholder = "Enter your first name" class = "InputName js-First">
+            <input placeholder = "Enter your last name" class = "InputName js-Last">
+          </div>
+          <input placeholder = "Password" type = "password" class = "Password"> 
+          <button class = "login-button" onClick = "login()">Login</button>
+          <hr class = "line">
+          <p class="forget">Forgot your password ? <a href = "../signup page/signuppage.html">Reset it now</a></p>
+          <hr class = "line">
+          <p class = "forget">Login through other options:</p>
+            <button class="other-option"><img src="2a5758d6-4edb-4047-87bb-e6b94dbbbab0-cover.png" class="logo">Google</button>
+            <button class="other-option"><img src="apple-logo-png-index-content-uploads-10.png" class="apple-logo"> Apple</button>
+            <button class="other-option"><img src="microsoft-logo-microsoft-icon-transparent-free-png.webp" class="microsoft-logo">Microsoft</button>
+        </div>
+      </div>
+    <script>
+      const firstName = localStorage.getItem('currentFnm');
+      const lastName = localStorage.getItem('currentLnm');
+      const eMail = localStorage.getItem('currentEmail');
+      const Password = localStorage.getItem('currentPass');
+      function login(){
+        if (document.querySelector(".InputName").value === " " || document.querySelector(".Password").value === " "){
+          alert("Please enter your credentials")
+        }
+        if (document.querySelector(".js-First").value === firstName && document.querySelector(".js-Last").value === lastName && document.querySelector(".Password").value === Password){
+          location.href="../profile page/profilepage.html";
+        }
+        else {
+          alert("Credentials don't match. Please re-enter your Credentials");
+        }
+      }
+    </script>
+</body>
+</html>
