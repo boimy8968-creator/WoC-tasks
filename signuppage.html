@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<head>
+  <title>
+    Signup page
+  </title>
+  <style>
+    body {
+      font-family:Arial;
+      margin: none;
+      background-color: rgb(40, 35, 45);
+      
+      
+      color: white;
+      height: 600px;
+    }
+    .body {
+      display: flex;
+    }
+
+    .Image {
+      width: 800px;
+      border-radius:40px;
+      box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+    }
+
+    .description {
+      font-size: 10px;
+      margin-left:5px;
+      margin-bottom: 18px;
+      display: inline-block;
+      text-align: left;
+    }
+
+    .signup-details {
+      margin-left: 80px;
+      margin-top:50px;
+    }
+
+    .InputName {
+      padding: 15px;
+      padding-right: 12px; 
+      margin-bottom: 16px;
+      margin-left: 4px;
+      border-radius: 6px;
+      margin-right:10px;
+      background-color: rgb(76, 65, 86);
+      border:none;
+      color: rgb(255, 255, 255)
+    }
+    .InputName:active {
+      border-color: purple;
+    }
+    .email,.password {
+      display: block;
+      padding: 15px;
+      padding-right: 220px; 
+      margin-bottom: 16px;
+      margin-left: 4px;
+      border-radius: 6px;
+      background-color: rgb(76, 65, 86);
+      border:none;
+      color: rgb(255, 255, 255)
+    }
+    
+    .login-button {
+      background-color: rgb(121, 82, 179);
+      border: none;
+      color: white;
+      padding-top: 13px;
+      padding-bottom: 13px;
+      padding-left: 136px;
+      padding-right: 136px;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.15s;
+      cursor: pointer;
+      margin-top: 20px;
+      margin-left: 8px;
+    }
+    .login-button:hover {
+      background-color: rgb(113, 62, 113)
+      
+    }
+    .terms-condition {
+      display: flex;
+
+    }
+    .line{
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .logo {
+      width: 38px;
+      
+    }
+    .apple-logo {
+      height: 19px;
+      margin-right: 4px;
+    }
+    .other-option {
+      background-color: rgb(40, 35, 45);
+      border-style: solid;
+      border-color: white;
+      border-width: 1px;
+      font-size: 18px;
+      padding-right: 24px;
+      padding-left: 18px;
+      padding-top: 14px;
+      color: white;
+      padding-bottom: 14px;
+      border-radius: 4px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .other-option:hover{
+      opacity: 0.7;
+
+    }
+    .microsoft-logo {
+      height: 19px;
+    }
+  </style>
+</head>
+<body>
+  <div class="body">
+    
+    <img class="Image" src="istockphoto-1381637603-612x612.jpg">
+
+    <div class="signup-details">  
+      <h1 class="heading">Create an account</h1>
+      <p class="description">
+        Already have an account ? <a href="../login page/loginpage.html">Log in</a>
+      </p>
+      <div class="user-input">
+        <input placeholder="First Name" class="InputName js-FirstName">
+        <input placeholder="Lastname" class="InputName js-LastName">
+        <input placeholder="Email" class="email js-email">
+        <input placeholder="Enter password" class="password js-password" type = "password">
+        <div class="terms-condition">
+          <input type="checkbox" class="check js-check">
+          <p class="description">I agree to the <a href="https://openai.com/en-GB/policies/row-terms-of-use/">Terms & Condition</a></p>
+        </div>
+      </div>
+      <button class="login-button" onclick="creatingAccount()">Create an Account</button>
+      <hr class="line">
+      <button class="other-option"><img src="2a5758d6-4edb-4047-87bb-e6b94dbbbab0-cover.png" class="logo">Google</button>
+      <button class="other-option"><img src="apple-logo-png-index-content-uploads-10.png" class="apple-logo"> Apple</button>
+      <button class="other-option"><img src="microsoft-logo-microsoft-icon-transparent-free-png.webp" class="microsoft-logo">Microsoft</button>
+    </div>  
+  </div>
+  <script>
+    function creatingAccount () {
+      const currentUser = {
+        firstName: document.querySelector('.js-FirstName').value,
+        lastName: document.querySelector('.js-LastName').value,
+        eMail: document.querySelector('.js-email').value,
+        Password : document.querySelector('.js-password').value,
+      }
+      localStorage.setItem('currentFnm',currentUser.firstName);
+      localStorage.setItem('currentLnm',currentUser.lastName);
+      localStorage.setItem('currentEmail',currentUser.eMail);
+      localStorage.setItem('currentPass',currentUser.Password);
+      const checkBox = document.querySelector('.js-check')
+      console.log (checkBox.checked);
+      if (currentUser.firstName !== "" && currentUser.lastName !== "" && currentUser.eMail !== "" && currentUser.Password !== ""){
+        if (checkBox.checked === true) {
+          location.href="../profile page/profilepage.html";
+        } 
+        else {
+          alert('Please mark the checkbox');
+        }
+      }
+      else {
+        alert ('Please enter all your credentials');
+      }
+    }
+  </script>
+  
+</body>
+</html>
