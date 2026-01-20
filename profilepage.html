@@ -103,7 +103,7 @@
       .detail,.heading {
         color: rgb(52, 52, 52);
       }
-      .edit-button {
+      .edit-button,.save-button{
         margin-right: 5px;
         margin-top: 4px;
         border: none;
@@ -116,89 +116,294 @@
         border-radius: 18px;
         cursor: pointer;
       }
-      
+      .log-out-button {
+        margin-right: 5px;
+        margin-top: 4px;
+        border: none;
+        font-family: Arial;
+        font-weight: bold;
+        color: rgb(52, 52, 52);
+        padding-left: 18px;
+        padding-right: 18px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background-color: rgb(249, 247, 243);
+        border-radius: 18px;
+        cursor: pointer;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .overlay {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        color: rgba(0,0,0,0.7);
+        opacity: 0;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+      }
+      .modal-box {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform:translate(-50%, -50%);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.7);
+        font-family: Arial;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        width: 600px;
+        background: white;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .modal-box-on {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .overlay-on {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .exit-butt {
+        border:none;
+        background-color: rgb(249, 247, 243);
+        border-width: 1px;
+        cursor: pointer;
+      }
+      .exit-butt:hover {
+        opacity: 0.7;
+      }
+      .exit-butt-img {
+        width:20px;
+      }
+      .header-sub {
+        height: 25px;
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(249, 247, 243);
+        font-size: 15px;
+        
+      }
+      .lower-sub {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+        margin-left: 15px;
+        margin-bottom: 10px;
+      }
+      .edit-input {
+        height:25px;
+        margin-top: -5px;
+        width: 500px;
+        border-radius: 6px;
+        border: none;
+        background-color: rgb(249, 247, 243);
+      }
+      .sub-title {
+        margin-top: 5px;
+        margin-left: 5px;
+      }
     </style>
   </head>
   <body>
-    <div class="header">
-      <div>
-        <button class="button-search"><img class="search-button" src="icons8-search.svg"></button>
+    <div class="page-read">
+      <div class="header">
+        <div>
+          <button class="button-search"><img class="search-button" src="icons8-search.svg"></button>
+        </div>
+        <div>
+          <p>Companies Logo</p>
+        </div>
+        <div>
+          <p><img src="person.svg js-FullName"> Judy Smith</p>
+        </div>
       </div>
-      <div>
-        <p>Companies Logo</p>
+      <div class="brief-info">
+        <img src="person.svg" class="person-image">    
+        <div class="person-name js-FullName">
+        </div>
+        <div class="settings">
+          Account & Settings
+        </div>
+        <div class="details">
+          <div>
+            <div class="time">0 min</div>
+            <div class="time-about">Total time meditated</div>
+          </div>
+          <div>
+            <div class="time">0 day</div>
+            <div class="time-about">Current run streak</div>
+          </div>
+        </div>
       </div>
-      <div>
-        <p><img src="person.svg"> Your Name</p>
+      <div class="detailed-info">
+        <div class="detailed-info-sub">
+          <div>
+            <div class="heading">
+              First name
+            </div>
+            <div class="detail js-fn">
+            </div>
+          </div>
+          <button class="edit-button js-edit-fn" onclick = "changeButton(event)">Edit</button>
+        </div>
+        <hr class="line">
+        <div class="detailed-info-sub">
+          <div>
+            <div class="heading">
+              Last name
+            </div>
+            <div class="detail js-ln">
+            </div>
+          </div>
+          <button class="edit-button js-edit-ln" onclick = "changeButton(event)">Edit</button>
+        </div>
+        <hr class="line">
+        <div class="detailed-info-sub">
+          <div>
+            <div class="heading">
+              Email
+            </div>
+            <div class="detail js-Email">
+            </div>
+          </div>
+          <button class="edit-button js-edit-email" onclick = "changeButton(event)">Edit</button>
+        </div>
+        <hr class="line">
+        <div class="detailed-info-sub">
+          <div>
+            <div class="heading">
+              Password
+            </div>
+            <div class="detail js-Password">
+            </div>
+          </div>
+          <button class="edit-button js-edit-password" onclick = "changeButton(event)">Edit</button>
+        </div>
+        <hr class="line">
+      </div>
+      <button class="log-out-button" onclick="logOut()">Log Out -></button>
+    </div>
+    <div class="popup">
+      <span class="overlay"></span>
+      <div class="modal-box">
+        
+        <div class="header-sub">
+          <div class="sub-title">Edit Menu</div>
+          <button class="exit-butt" onclick="changeButton()"><img src="square-xmark-solid-full.svg" class="exit-butt-img"></button>
+        </div>
+        <div class="lower-sub">
+          <div class="editing">
+            <p>Edit your details:</p>
+            <input class="edit-input js-EditInput">
+          </div>
+          <button class="save-button js-SaveButton" onclick="saveButton()">Save</button>
+        </div>
       </div>
     </div>
-    <div class="brief-info">
-      <img src="person.svg" class="person-image">    
-      <div class="person-name">
-        Judy Smith
-      </div>
-      <div class="settings">
-        Account & Settings
-      </div>
-      <div class="details">
-        <div>
-          <div class="time">145 min</div>
-          <div class="time-about">Total time meditated</div>
-        </div>
-        <div>
-          <div class="time">1 day</div>
-          <div class="time-about">Current run streak</div>
-        </div>
-      </div>
-    </div>
-    <div class="detailed-info">
-      <div class="detailed-info-sub">
-        <div>
-          <div class="heading">
-            First name
-          </div>
-          <div class="detail">
-            Judy
-          </div>
-        </div>
-        <button class="edit-button">Edit</button>
-      </div>
-      <hr class="line">
-      <div class="detailed-info-sub">
-        <div>
-          <div class="heading">
-            Last name
-          </div>
-          <div class="detail">
-            Smith
-          </div>
-        </div>
-        <button class="edit-button">Edit</button>
-      </div>
-      <hr class="line">
-      <div class="detailed-info-sub">
-        <div>
-          <div class="heading">
-            Email
-          </div>
-          <div class="detail">
-            Judymobbin@gmail.com
-          </div>
-        </div>
-        <button class="edit-button">Edit</button>
-      </div>
-      <hr class="line">
-      <div class="detailed-info-sub">
-        <div>
-          <div class="heading">
-            Password
-          </div>
-          <div class="detail">
-            **********
-          </div>
-        </div>
-        <button class="edit-button">Edit</button>
-      </div>
-      <hr class="line">
-    </div> 
+    
+
+    <script>
+      const firstName = localStorage.getItem('currentFnm');
+      const lastName = localStorage.getItem('currentLnm');
+      const eMail = localStorage.getItem('currentEmail');
+      const Password = localStorage.getItem('currentPass');
+      const saveBtn = document.querySelector('.js-SaveButton');
+      const closeBtn = document.querySelector('.exit-butt');
+      let bufferValue= "";
+
+      if (firstName && lastName){
+        document.querySelector('.js-FullName').innerHTML = `${firstName} ${lastName}`;
+      }
+      else {
+        alert("You are not logged in!");
+        window.location.href = "../signup-page/login.html";
+      }
+      if (firstName){
+        document.querySelector('.js-fn').innerHTML = firstName;
+      }
+      else {
+        alert("You are not logged in!");
+        window.location.href = "../signup-page/login.html";
+      }
+      if (lastName){
+        document.querySelector('.js-ln').innerHTML = lastName;
+      }
+      else {
+        alert("You are not logged in!");
+        window.location.href = "../signup-page/login.html";
+      }
+      if (eMail){
+        document.querySelector('.js-Email').innerHTML = eMail;
+      }
+      else {
+        alert("You are not logged in!");
+        window.location.href = "../signup-page/login.html";
+      }
+      if (Password){
+        document.querySelector('.js-Password').innerHTML = Password;
+      }
+      else {
+        alert("You are not logged in!");
+        window.location.href = "../signup-page/login.html";
+      }
+      function changeButton(event) {
+        const modalBox = document.querySelector('.modal-box');
+        const overLay = document.querySelector('.overlay');
+        
+        modalBox.classList.toggle('modal-box-on'); 
+        overLay.classList.toggle('overlay-on');
+        const classKnow = event.target;
+        if (classKnow.classList.contains('js-edit-fn')){
+          document.querySelector('.js-EditInput').value = firstName;
+          bufferValue = "firstname"; 
+        }
+        else if (classKnow.classList.contains('js-edit-ln')){
+          document.querySelector('.js-EditInput').value = lastName;
+          bufferValue = "lastname";
+        }
+        else if (classKnow.classList.contains('js-edit-email')){
+          document.querySelector('.js-EditInput').value = eMail;
+          bufferValue = "email";
+        }
+        else if (classKnow.classList.contains('js-edit-password')){
+          document.querySelector('.js-EditInput').value = Password;
+          bufferValue = "password";
+        }
+        
+      }
+      function saveButton () {
+        const newValue = document.querySelector('.js-EditInput').value;
+        if (bufferValue === "firstname") {
+          localStorage.setItem('currentFnm',newValue);
+          document.querySelector('.js-fn').innerHTML = newValue;
+          document.querySelector('.js-FullName').innerHTML = `${newValue} ${lastName}`;
+        }
+        else if (bufferValue === "lastname") {
+          localStorage.setItem('currentLnm',newValue);
+          document.querySelector('.js-ln').innerHTML = newValue;
+          document.querySelector('.js-FullName').innerHTML = `${firstName} ${newValue}`;
+        }
+        else if (bufferValue === "email") {
+          localStorage.setItem('currentEmail',newValue);
+          document.querySelector('.js-Email').innerHTML = newValue;
+        }
+        else if (bufferValue === "password") {
+          localStorage.setItem('currentPass',newValue);
+          document.querySelector('.js-Password').innerHTML = newValue;
+        }
+        const modalBox = document.querySelector('.modal-box');
+        const overLay = document.querySelector('.overlay');
+        
+        modalBox.classList.toggle('modal-box-on');
+        overLay.classList.toggle('overlay-on');
+      }
+      function logOut() {
+        window.location.href = "../login page/loginpage.html";
+      }
+    </script> 
   </body>
 </html>
